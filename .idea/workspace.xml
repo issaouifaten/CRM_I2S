@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7b0f6e6-88a6-42d2-a36d-60686198a830" name="Default Changelist" comment="" />
+    <list default="true" id="b7b0f6e6-88a6-42d2-a36d-60686198a830" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Menu/menuLateral.php" beforeDir="false" afterPath="$PROJECT_DIR$/Menu/menuLateral.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Menu/menuTop.php" beforeDir="false" afterPath="$PROJECT_DIR$/Menu/menuTop.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tache/AjoutTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/AjoutTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tache/Controller/SpinClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/Controller/SpinClient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tache/Controller/SpinModule.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/Controller/SpinModule.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tache/Controller/ajoutTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/Controller/ajoutTache.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,8 +18,12 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectId" id="1nmhAWtghEIRjSZRtfod77R8DbF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -51,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612001030006</updated>
-      <workItem from="1612001031094" duration="5708000" />
+      <workItem from="1612001031094" duration="6932000" />
     </task>
     <servers />
   </component>

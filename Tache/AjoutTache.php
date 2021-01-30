@@ -208,7 +208,31 @@ require "../Connexion/db.php";
 
     </div>
 </div>
+<div class="modal fade" id="ModalSucces" role="dialog">
+    <div class="modal-dialog">
 
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header alert-red">
+
+                <h4 class="modal-title"> Ajout </h4>
+            </div>
+            <div class="modal-body">
+
+                <br>
+                <h4> Ligne Ajoutée    </span></h4>
+
+
+            </div>
+            <div class="modal-footer">
+
+
+                <button class="btn btn-default" data-dismiss="modal">fermer</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </body>
 

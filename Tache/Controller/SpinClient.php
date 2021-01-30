@@ -11,7 +11,7 @@ if ($stmt === false) {
 $spin="";
 while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
 
-$spin.="<option value='".$row['CodeClient']."'  >".$row['RaisonSociale']."</option>";
+$spin.="<option value='".$row['CodeClient']."'  >".utf8_encode($row['RaisonSociale'])."</option>";
 
 
 

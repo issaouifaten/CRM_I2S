@@ -19,33 +19,33 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
 
-                <li class="nav-item">
-                    <a href="../Calendrier/affiche.php" class="nav-link">
-                        <i class="nav-icon fas fa-calendar"></i>
-                        <p>
-                            Calendrier
-
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../Client/client.php" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            Client
-
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../Menu/menuParametrage.php" class="nav-link">
-                        <i class="nav-icon fas fa-cogs"></i>
-                        <p>
-                           Parametrage
-
-                        </p>
-                    </a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a href="../Calendrier/affiche.php" class="nav-link">-->
+<!--                        <i class="nav-icon fas fa-calendar"></i>-->
+<!--                        <p>-->
+<!--                            Calendrier-->
+<!---->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a href="../Client/client.php" class="nav-link">-->
+<!--                        <i class="nav-icon fas fa-users"></i>-->
+<!--                        <p>-->
+<!--                            Client-->
+<!---->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a href="../Menu/menuParametrage.php" class="nav-link">-->
+<!--                        <i class="nav-icon fas fa-cogs"></i>-->
+<!--                        <p>-->
+<!--                           Parametrage-->
+<!---->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                </li>-->
 
             </ul>
         </nav>
