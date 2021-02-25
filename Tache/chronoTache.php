@@ -1,7 +1,7 @@
 <?php
 setlocale(LC_TIME, 'fr_FR', 'french', 'fre', 'fra');
 require "../Connexion/db.php";
-
+session_start();
 ?>
 
 
@@ -18,6 +18,7 @@ require "../Connexion/db.php";
     <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css"/>
     <!-- Google web Font -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500">
+
 
 
     <!-- end: Css -->
@@ -52,7 +53,6 @@ require "../Connexion/db.php";
     <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
-
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -71,28 +71,41 @@ require "../Connexion/db.php";
         <!-- Main content -->
         <div class="content bg-white ">
             <div class="container-fluid  ">
-                <div class="row p-5">
-                    <div class="col-md-11">
+                <div class="row p-1">
+                    <div class="col-md-12">
                         <!-- /.card -->
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Liste Salle</h3>
+                                <h3 class="card-title">Liste Tache</h3>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-3">
+
+
+                            <input type="date" id="date" class="form-control" value="<?php echo date("Y-m-d")  ?>"   onchange="fillListTache()">
+                            </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="table" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>CODE</th>
-                                        <th>Designation</th>
+
+
+                                        <th>Tache</th>
+
+                                        <th>CLIENT</th>
+
+                                        <th></th>
+                                        <th>Duree</th>
 
 
 
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <?php require "controller/tableSalle.php" ?>
+                                    <tbody id="dataBody">
+
 
 
                                     </tbody>
@@ -106,18 +119,7 @@ require "../Connexion/db.php";
                         <!-- /.card -->
 
                     </div>
-                    <div class="col-md-1">
-                        <button class="btn btn-app bg-danger" data-toggle="modal" data-target="#ModalAjout">
 
-                            <i class="fas fa-user-plus"></i> AJOUT
-                        </button>
-
-                        <button class="btn btn-app bg-success" data-toggle="modal" data-target="#ModalModif">
-
-                            <i class="fas fa-user-edit"></i> EDIT
-                        </button>
-
-                    </div>
 
 
                 </div>
@@ -129,41 +131,6 @@ require "../Connexion/db.php";
 </div>
 
 
-<div class="modal fade" id="ModalAjout" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header alert-red">
-
-                <h4 id="day" class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-                <h4>Ajout Salle</h4>
-                <hr>
-                <div class="row">
-
-
-                    <div class="col-md-6">
-                        <label>Designation </label>
-                        <input class="form-control-border " id="txt_nom" type="text">
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-
-
-                <button class="btn btn-danger" onclick="AddSalle()"> Valider</button>
-                <button class="btn btn-default" data-dismiss="modal">fermer</button>
-
-            </div>
-        </div>
-
-    </div>
-</div>
 
 <div class="modal fade" id="ModalErreur" role="dialog">
     <div class="modal-dialog">
@@ -190,160 +157,136 @@ require "../Connexion/db.php";
 
     </div>
 </div>
-<div class="modal fade" id="ModalModif" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header alert-red">
-
-                <h4 id="day" class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-                <h4>Modifier Salle</h4>
-                <hr>
-                <div class="row">
-                    <div class="col-md-4">
-                        <label>Code</label>
-                        <input class="form-control-border " readonly id="txt_code_modif" type="text">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label>Designation</label>
-                        <input class="form-control-border " id="txt_nom_modif" type="text">
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-
-
-                <button class="btn btn-danger" onclick="ModifSalle()"> Valider</button>
-                <button class="btn btn-default" data-dismiss="modal">fermer</button>
-
-            </div>
-        </div>
-
-    </div>
-</div>
 
 </body>
 
 
 <script>
-    function AddSalle() {
-        var text_nom = document.getElementById('txt_nom').value;
-
-
-        if (text_nom == "") {
-            document.getElementById('txt_erreur').innerHTML = " NomRespensable est obligatoire";
-
-            $('#ModalErreur').modal('show');
-
-        } else {
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else { // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    if (this.responseText) {
-                        location.reload();
-                    } else {
-                        document.getElementById('txt_erreur').innerHTML = " Erreur SQL";
-
-                        $('#ModalErreur').modal('show');
-
-                    }
-
-
-                }
-            }
-            var parm = "Nom=" + text_nom;
-            xmlhttp.open("GET", "Controller/ajoutSalle.php?" + parm, true);
-            xmlhttp.send();
-        }
-    }
-
-    function checkSalle(codeRep, nomRep) {
-
-        document.getElementById('txt_nom_modif').value = nomRep;
-        document.getElementById('txt_code_modif').value = codeRep;
-
-        var table = document.getElementById("table") ; //l'array est stocké dans une variable
-        var arrayLignes = document.getElementById("table").rows; //l'array est stocké dans une variable
-        var longueur = arrayLignes.length;//on peut donc appliquer la propriété length
-        var tr = table.getElementsByTagName("tr");
-        var i;
-        for (i = 0; i < longueur; i++) {
-            var td = tr[i].getElementsByTagName("td")[0];
-
-            if (td) {
-                var txtValue = td.textContent || td.innerText;
-                //  var txtValue2 = td2.textContent || td2.innerText;
-                if (txtValue.toUpperCase().indexOf(codeRep.toUpperCase()) > -1) {
-                    tr[i].style.backgroundColor = "#bdcbf5";
 
 
 
-                } else {
-                    tr[i].style.backgroundColor = "white";
-                }
-            }else{
-
-            }
-        }
-
-    }
-
-    function ModifSalle() {
-        var text_nom = document.getElementById('txt_nom_modif').value;
-        var text_code = document.getElementById('txt_code_modif').value;
+   function finiTache(NumeroTache,NumeroEtat){
 
 
-        if (text_nom == "") {
-            document.getElementById('txt_erreur').innerHTML = " NomRespensable est obligatoire";
-
-            $('#ModalErreur').modal('show');
-
-        } else {
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else { // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
+           if (window.XMLHttpRequest) {
+               // code for IE7+, Firefox, Chrome, Opera, Safari
+               xmlhttp = new XMLHttpRequest();
+           } else { // code for IE6, IE5
+               xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+           }
+           xmlhttp.onreadystatechange = function () {
+               if (this.readyState == 4 && this.status == 200) {
 
 
-                    if (this.responseText) {
-                        location.reload();
-                    } else {
-                        document.getElementById('txt_erreur').innerHTML = " Erreur SQL";
+                   if (this.responseText==1) {
+                      location.reload();
 
-                        $('#ModalErreur').modal('show');
+                   } else {
+                       document.getElementById('txt_erreur').innerHTML = " Erreur SQL"+this.responseText;
 
-                    }
+                       $('#ModalErreur').modal('show');
 
-
-                }
-            }
-            var parm = "Nom=" + text_nom+"&Code="+text_code;
-            xmlhttp.open("GET", "Controller/modifSalle.php?" + parm, true);
-            xmlhttp.send();
-        }
-    }
+                   }
 
 
+               }
+           }
+           var parm="NumeroTache="+NumeroTache+"&NumeroEtat="+NumeroEtat
 
+       xmlhttp.open("GET", "Controller/finiTache.php?" + parm, true);
+       xmlhttp.send();
+   }
+   function pauseTache(NumeroTache){
+
+
+       if (window.XMLHttpRequest) {
+           // code for IE7+, Firefox, Chrome, Opera, Safari
+           xmlhttp = new XMLHttpRequest();
+       } else { // code for IE6, IE5
+           xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+       }
+       xmlhttp.onreadystatechange = function () {
+           if (this.readyState == 4 && this.status == 200) {
+
+
+               if (this.responseText==1) {
+                   location.reload();
+
+               } else {
+                   document.getElementById('txt_erreur').innerHTML = " Erreur SQL"+this.responseText;
+
+                   $('#ModalErreur').modal('show');
+
+               }
+
+
+           }
+       }
+       var parm="NumeroTache="+NumeroTache
+
+       xmlhttp.open("GET", "Controller/pauseTache.php?" + parm, true);
+       xmlhttp.send();
+   }
+   function startTache(NumeroTache){
+
+
+       if (window.XMLHttpRequest) {
+           // code for IE7+, Firefox, Chrome, Opera, Safari
+           xmlhttp = new XMLHttpRequest();
+       } else { // code for IE6, IE5
+           xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+       }
+       xmlhttp.onreadystatechange = function () {
+           if (this.readyState == 4 && this.status == 200) {
+
+
+               if (this.responseText==1) {
+                   location.reload();
+
+               } else {
+                   document.getElementById('txt_erreur').innerHTML = " Erreur SQL"+this.responseText;
+
+                   $('#ModalErreur').modal('show');
+
+               }
+
+
+           }
+       }
+       var parm="NumeroTache="+NumeroTache
+
+       xmlhttp.open("GET", "Controller/startTache.php?" + parm, true);
+       xmlhttp.send();
+   }
+
+
+ function  fillListTache(){
+       var date=document.getElementById("date").value;
+     if (window.XMLHttpRequest) {
+         // code for IE7+, Firefox, Chrome, Opera, Safari
+         xmlhttp = new XMLHttpRequest();
+     } else { // code for IE6, IE5
+         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+     }
+     xmlhttp.onreadystatechange = function () {
+         if (this.readyState == 4 && this.status == 200) {
+
+
+                 document.getElementById('dataBody').innerHTML =  this.responseText;
+
+
+
+
+         }
+     }
+     var parm="Date="+date
+
+     xmlhttp.open("GET", "Controller/tableChronoTache.php?" + parm, true);
+     xmlhttp.send();
+
+   }
+   fillListTache();
 </script>
-
-
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -389,7 +332,7 @@ require "../Connexion/db.php";
     $(function () {
         $("#table").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": [  "excel", "print", "colvis"]
         }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
@@ -401,6 +344,16 @@ require "../Connexion/db.php";
             "responsive": true,
         });
     });
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
+    })
+
 </script>
+
+
 </body>
 </html>

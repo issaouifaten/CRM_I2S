@@ -1,14 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7b0f6e6-88a6-42d2-a36d-60686198a830" name="Default Changelist" comment="">
+    <list default="true" id="b7b0f6e6-88a6-42d2-a36d-60686198a830" name="Default Changelist" comment="comit">
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/AddLigneRapportToTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/AddSingleTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/AnnulAppel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/SpinClient.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/SpinDegres.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/SpinModule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/SpinRespensable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/ajoutAppel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/tableTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/tableTacheRapport.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/ListAppel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calendrier/Controller/FicheClient.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calendrier/Controller/listcalendar.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calendrier/Controller/listdetail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calendrier/listcalendar.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/ModifTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/SpinAppel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/SpinDegres.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/affectTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/alertStart.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/fill_tableTache_par_etat.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/finiTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/finiTacheForcer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/listGroupTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/modifListGroupAffect.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/pauseTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/planifierTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/startTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/tableChronoTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/tableChronoTacheParDeveloppeur.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/tableTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/chronoTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/impression/impression_listeTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calendrier/Controller/SpinRespensable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Calendrier/Controller/SpinRespensable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calendrier/affiche.php" beforeDir="false" afterPath="$PROJECT_DIR$/Calendrier/affiche.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu/menuLateral.php" beforeDir="false" afterPath="$PROJECT_DIR$/Menu/menuLateral.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu/menuTop.php" beforeDir="false" afterPath="$PROJECT_DIR$/Menu/menuTop.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/SpinTypeActivite.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/Controller/SpinRespensable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/ajoutActivitie.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/ajoutRespensable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/ajoutSalle.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/modifActivite.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/modifRespensable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/modifSalle.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/tableActivite.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/tableRespensable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/tableSalle.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/parametrageActivity.php" beforeDir="false" afterPath="$PROJECT_DIR$/AppelDemande/AjoutAppel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/parametrageRespensable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/ListTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModuleParametrage/parametrageSalle.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/chronoTacheParDeveloppeur.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tache/AjoutTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/AjoutTache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tache/Controller/SpinClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/Controller/SpinClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tache/Controller/SpinModule.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/Controller/SpinModule.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tache/Controller/ajoutTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/Controller/ajoutTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design/calendrier.css" beforeDir="false" afterPath="$PROJECT_DIR$/design/calendrier.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,26 +81,48 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Tache/Controller" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../web_xampp/Color" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\CRM_I2S\CompteurPiece" />
       <recent name="C:\xampp\htdocs\CRM_I2S\Tache\Controller" />
+      <recent name="C:\xampp\htdocs\CRM_I2S\Calendrier\Controller" />
+      <recent name="C:\xampp\htdocs\CRM_I2S\Tache" />
+      <recent name="C:\xampp\htdocs\CRM_I2S\Calendrier" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\CRM_I2S\Calendrier\Controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.advanced.html">
-    <configuration name="AjoutTache.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CRM_I2S/Tache/AjoutTache.php" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="JavaScript Debug.i.php">
+    <configuration name="alertStart.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CRM_I2S/Tache/Controller/alertStart.php" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="advanced.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CRM_I2S/pages/forms/advanced.html" useBuiltInWebServerPort="true">
+    <configuration name="i.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/CRM_I2S/CompteurPiece/i.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="incriment.php" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:8080/CRM_I2S/CompteurPiece/incriment.php">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CRM_I2S/index.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="listdetail.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CRM_I2S/Calendrier/Controller/listdetail.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="incriment.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/CompteurPiece/incriment.php">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.advanced.html" />
-        <item itemvalue="JavaScript Debug.AjoutTache.php" />
+        <item itemvalue="JavaScript Debug.i.php" />
+        <item itemvalue="PHP Script.incriment.php" />
+        <item itemvalue="JavaScript Debug.alertStart.php" />
+        <item itemvalue="JavaScript Debug.index.php" />
+        <item itemvalue="JavaScript Debug.listdetail.php" />
       </list>
     </recent_temporary>
   </component>
@@ -63,11 +134,193 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612001030006</updated>
-      <workItem from="1612001031094" duration="6932000" />
+      <workItem from="1612001031094" duration="6972000" />
+      <workItem from="1612026052923" duration="2217000" />
+      <workItem from="1612164450240" duration="16212000" />
+      <workItem from="1612184656993" duration="2488000" />
+      <workItem from="1612251541069" duration="28000" />
+      <workItem from="1612251578674" duration="9565000" />
+      <workItem from="1612262702944" duration="9105000" />
+      <workItem from="1612276681019" duration="1454000" />
+      <workItem from="1612293780618" duration="1002000" />
+      <workItem from="1612534130392" duration="618000" />
+      <workItem from="1612689032337" duration="1192000" />
+      <workItem from="1612690850696" duration="594000" />
+      <workItem from="1612692669374" duration="594000" />
+      <workItem from="1612694499193" duration="594000" />
+      <workItem from="1612697402743" duration="661000" />
+      <workItem from="1612699411818" duration="594000" />
+      <workItem from="1612701234613" duration="211000" />
+      <workItem from="1612768017747" duration="1764000" />
+      <workItem from="1612769808536" duration="1267000" />
+      <workItem from="1612772383957" duration="1356000" />
+      <workItem from="1612774193870" duration="1785000" />
+      <workItem from="1612776004865" duration="1626000" />
+      <workItem from="1612778245493" duration="1792000" />
+      <workItem from="1612780072159" duration="1784000" />
+      <workItem from="1612781878802" duration="1786000" />
+      <workItem from="1612783848498" duration="616000" />
+      <workItem from="1612790706734" duration="919000" />
+      <workItem from="1612792513443" duration="1786000" />
+      <workItem from="1612794326963" duration="1391000" />
+      <workItem from="1612798002324" duration="1784000" />
+      <workItem from="1612799811261" duration="951000" />
+      <workItem from="1612814970616" duration="2380000" />
+      <workItem from="1612855024928" duration="1618000" />
+      <workItem from="1612856831450" duration="1785000" />
+      <workItem from="1612858638505" duration="1696000" />
+      <workItem from="1612875460697" duration="600000" />
+      <workItem from="1612881395370" duration="1047000" />
+      <workItem from="1612886704163" duration="1606000" />
+      <workItem from="1612942113973" duration="1755000" />
+      <workItem from="1612944023816" duration="801000" />
+      <workItem from="1612955939017" duration="1961000" />
+      <workItem from="1612958324805" duration="609000" />
+      <workItem from="1612964796855" duration="1793000" />
+      <workItem from="1612966622867" duration="1778000" />
+      <workItem from="1612968429703" duration="1392000" />
+      <workItem from="1613028011665" duration="1792000" />
+      <workItem from="1613029826065" duration="1527000" />
+      <workItem from="1613032559369" duration="2327000" />
+      <workItem from="1613034915102" duration="1785000" />
+      <workItem from="1613036730025" duration="1783000" />
+      <workItem from="1613038536943" duration="1776000" />
+      <workItem from="1613040661596" duration="1784000" />
+      <workItem from="1613042469686" duration="1791000" />
+      <workItem from="1613044291058" duration="1090000" />
+      <workItem from="1613047433487" duration="2724000" />
+      <workItem from="1613050465708" duration="627000" />
+      <workItem from="1613057182880" duration="1000000" />
+      <workItem from="1613114715695" duration="911000" />
+      <workItem from="1613116786793" duration="1294000" />
+      <workItem from="1613121341396" duration="1787000" />
+      <workItem from="1613123178257" duration="1781000" />
+      <workItem from="1613124985499" duration="2506000" />
+      <workItem from="1613127520178" duration="1705000" />
+      <workItem from="1613129710320" duration="633000" />
+      <workItem from="1613134852731" duration="622000" />
+      <workItem from="1613136988299" duration="782000" />
+      <workItem from="1613140298850" duration="617000" />
+      <workItem from="1613141320269" duration="813000" />
+      <workItem from="1613144526006" duration="1921000" />
+      <workItem from="1613146533121" duration="878000" />
+      <workItem from="1613148628907" duration="625000" />
+      <workItem from="1613201008534" duration="1673000" />
+      <workItem from="1613202919839" duration="1608000" />
+      <workItem from="1613204802353" duration="1813000" />
+      <workItem from="1613206645991" duration="1783000" />
+      <workItem from="1613208453857" duration="1784000" />
+      <workItem from="1613210263118" duration="1726000" />
+      <workItem from="1613212417863" duration="2283000" />
+      <workItem from="1613293076830" duration="709000" />
+      <workItem from="1613300801950" duration="906000" />
+      <workItem from="1613374827759" duration="1777000" />
+      <workItem from="1613376629362" duration="1784000" />
+      <workItem from="1613378438429" duration="1441000" />
+      <workItem from="1613380244703" duration="1587000" />
+      <workItem from="1613382499613" duration="594000" />
+      <workItem from="1613384308317" duration="1259000" />
+      <workItem from="1613386120093" duration="1709000" />
+      <workItem from="1613390137978" duration="1672000" />
+      <workItem from="1613394624515" duration="1378000" />
+      <workItem from="1613396601275" duration="2017000" />
+      <workItem from="1613398648673" duration="701000" />
+      <workItem from="1613400509247" duration="1009000" />
+      <workItem from="1613402318909" duration="1199000" />
+      <workItem from="1613404125044" duration="594000" />
+      <workItem from="1613468881878" duration="1762000" />
+      <workItem from="1613470753926" duration="1629000" />
+      <workItem from="1613472560173" duration="1271000" />
+      <workItem from="1613474426164" duration="593000" />
+      <workItem from="1613476303662" duration="593000" />
+      <workItem from="1613480830941" duration="1097000" />
+      <workItem from="1613482787169" duration="595000" />
+      <workItem from="1613547250489" duration="1254000" />
+      <workItem from="1613549100701" duration="593000" />
+      <workItem from="1613552998584" duration="1185000" />
+      <workItem from="1613554815389" duration="594000" />
+      <workItem from="1613556626171" duration="593000" />
+      <workItem from="1613567990761" duration="1416000" />
+      <workItem from="1613569802535" duration="1777000" />
+      <workItem from="1613571608923" duration="819000" />
+      <workItem from="1613637214892" duration="594000" />
+      <workItem from="1613639290544" duration="594000" />
+      <workItem from="1613670195137" duration="776000" />
+      <workItem from="1613672849601" duration="1113000" />
+      <workItem from="1613673997510" duration="603000" />
+      <workItem from="1613676305108" duration="594000" />
+      <workItem from="1613678166904" duration="594000" />
+      <workItem from="1613723966842" duration="1877000" />
+      <workItem from="1613726184245" duration="638000" />
+      <workItem from="1613735747068" duration="594000" />
+      <workItem from="1613740825287" duration="1202000" />
+      <workItem from="1613742648319" duration="594000" />
+      <workItem from="1613744445749" duration="594000" />
+      <workItem from="1613746341347" duration="788000" />
+      <workItem from="1613748444783" duration="594000" />
+      <workItem from="1613750255492" duration="594000" />
+      <workItem from="1613759337306" duration="631000" />
+      <workItem from="1613761147492" duration="594000" />
+      <workItem from="1613763281954" duration="594000" />
+      <workItem from="1613765091045" duration="594000" />
+      <workItem from="1613806143100" duration="1550000" />
+      <workItem from="1613808338198" duration="1785000" />
+      <workItem from="1613810147553" duration="991000" />
+      <workItem from="1613812563035" duration="1781000" />
+      <workItem from="1613814368984" duration="1813000" />
+      <workItem from="1613816213243" duration="1766000" />
+      <workItem from="1613818348205" duration="1748000" />
+      <workItem from="1613820245875" duration="1159000" />
+      <workItem from="1613822247917" duration="1243000" />
+      <workItem from="1613899342782" duration="594000" />
+      <workItem from="1613901260391" duration="595000" />
+      <workItem from="1613903257530" duration="594000" />
+      <workItem from="1613905065011" duration="595000" />
+      <workItem from="1613906884078" duration="756000" />
+      <workItem from="1613979448181" duration="607000" />
+      <workItem from="1614002521300" duration="804000" />
+      <workItem from="1614003350885" duration="1782000" />
+      <workItem from="1614005162931" duration="1781000" />
+      <workItem from="1614006972708" duration="1814000" />
+      <workItem from="1614008815680" duration="1221000" />
+      <workItem from="1614065373181" duration="1780000" />
+      <workItem from="1614067177705" duration="1476000" />
+      <workItem from="1614072324106" duration="37000" />
+      <workItem from="1614241312219" duration="20000" />
+      <workItem from="1614241339494" duration="896000" />
+      <workItem from="1614242252744" duration="1791000" />
+      <workItem from="1614244064104" duration="1788000" />
+      <workItem from="1614245871937" duration="1792000" />
+      <workItem from="1614247705441" duration="1783000" />
+      <workItem from="1614249508614" duration="1334000" />
     </task>
+    <task id="LOCAL-00001" summary="comit">
+      <created>1612013004080</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1612013004080</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="comit" />
+    <option name="LAST_COMMIT_MESSAGE" value="comit" />
   </component>
 </project>

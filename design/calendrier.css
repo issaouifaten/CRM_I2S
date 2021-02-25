@@ -37,6 +37,8 @@ table.calendrier td {
 	border: 1px solid #f4f4f4;
 	/*width: 60px;*/
 	height: 80px;
+	max-width:100px ;
+	word-break: break-word;
 }
 
 table.calendrier td div {

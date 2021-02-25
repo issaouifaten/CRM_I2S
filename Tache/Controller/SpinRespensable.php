@@ -1,6 +1,5 @@
 <?php
 
-
 session_start();
 $nomuser=  $_SESSION['username'];
 $CodeRepresentant=$_SESSION['CodeRepresentant'];
@@ -13,7 +12,7 @@ if ($stmt === false) {
 
 
 
-$spin="<option    ></option>";
+$spin="<option    >Aucun</option>";
 while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     if($CodeRepresentant==$row['CodeRespensable'])
     {
@@ -21,7 +20,7 @@ while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     }else{
         $check="";
     }
-    $spin.="<option value='".$row['CodeRespensable']."' $check   >".$row['Nom']."</option>";
+$spin.="<option value='".$row['CodeRespensable']."' $check   >".$row['Nom']."</option>";
 
 
 

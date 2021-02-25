@@ -1,7 +1,10 @@
 <?php
 setlocale(LC_TIME, 'fr_FR', 'french', 'fre', 'fra');
 require "../Connexion/db.php";
-
+session_start();
+if ($_SESSION['username'] == "") {
+    header("location:../index.php");
+}
 ?>
 
 
@@ -81,91 +84,139 @@ require "../Connexion/db.php";
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-
-
-                                <div class="row p-2">
-                                    <div class="col-md-2"><LABEL>CLIENT</LABEL></div>
+                                <div class="row">
                                     <div class="col-md-6">
 
-                                        <select id="spinClient" class="col-md-8 form-control select2 select2-danger">
-                                            <?php require "Controller/SpinClient.php" ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row p-2">
 
-                                    <div class="col-md-2">
-                                        <label>Observation</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <textarea id="txt_observation" class="form-control" rows="5"></textarea>
-                                    </div>
+                                        <div class="row   p-2">
+                                            <div class="col-md-2"><LABEL>CLIENT</LABEL></div>
+                                            <div class="col-md-8">
 
-                                </div>
-                                <div class="row p-2">
-                                    <div class="col-md-2">
-                                        <label>Nature</label>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <!-- radio -->
-                                        <div class="form-group clearfix">
-
-                                            <div class="icheck-primary d-inline">
-                                                <input type="checkbox" id="rd_soft"  >
-                                                <label for="rd_soft">
-                                                    SOFT
-                                                </label>
+                                                <select id="spinClient"
+                                                        class="col-md-8 form-control select2 select2-danger">
+                                                    <?php require "Controller/SpinClient.php" ?>
+                                                </select>
                                             </div>
-                                            <div class="icheck-primary d-inline">
-                                                <input type="checkbox" id="rd_technique"  >
-                                                <label for="rd_technique">
-                                                    TECHNIQUE
-                                                </label>
+                                        </div>
+                                        <div class="row p-2">
+
+                                            <div class="col-md-2">
+                                                <label>Observation</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <textarea id="txt_observation" class="form-control" rows="5"></textarea>
+                                            </div>
+
+                                        </div>
+                                        <div class="row p-2">
+                                            <div class="col-md-2">
+                                                <label>Nature</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <!-- radio -->
+                                                <div class="form-group clearfix">
+
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="checkbox" id="rd_soft">
+                                                        <label for="rd_soft">
+                                                            SOFT
+                                                        </label>
+                                                    </div>
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="checkbox" id="rd_technique">
+                                                        <label for="rd_technique">
+                                                            TECHNIQUE
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row p-2">
+                                            <div class="col-md-2">
+                                                <label>Type</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <!-- radio -->
+                                                <div class="form-group clearfix">
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="radio" id="rd_maintenance" name="r1" checked>
+                                                        <label for="rd_maintenance">
+                                                            Maintenance
+                                                        </label>
+                                                    </div>
+                                                    <div class="icheck-primary d-inline">
+                                                        <input type="radio" id="rd_ajout" name="r1">
+                                                        <label for="rd_ajout">
+                                                            Ajout
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row p-2">
+                                            <div class="col-md-2"><LABEL>Module</LABEL></div>
+                                            <div class="col-md-6">
+
+                                                <select id="spinModule"
+                                                        class="col-md-8 form-control select2 select2-danger">
+                                                    <?php require "Controller/SpinModule.php" ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="row p-2">
+                                            <div class="col-md-2"><LABEL>Affecté à</LABEL></div>
+                                            <div class="col-md-6 p-1">
+                                                <select id="spinRep"
+                                                        class="col-md-12 form-control  select2 select2-danger">
+                                                    <?php require "Controller/SpinRespensable.php" ?>
+                                                </select>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row p-2">
+                                            <label><input id="checkgroup" type="checkbox" onclick="toggleShow()">Groupe Affect</label>
+                                            <div id="divAffectGroup">
+                                                <table id="table_ajout_ligne_rapport" class="table   ">
+                                                    <tr>
+                                                        <td><select id="spinRepAjout"
+                                                                    class="form-control   select2-blue">
+                                                                <?php require "Controller/SpinRespensable.php" ?>
+                                                            </select></td>
+
+
+                                                        <td></td>
+                                                        <td>
+                                                            <button onclick="ajoutLigneAffect()" class="btn btn-info"><i
+                                                                        class="fa fa-plus"></i></button>
+                                                        </td>
+
+
+                                                    </tr>
+
+
+                                                    <tbody id="data_ajout" class="overflow-auto"></tbody>
+
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row p-2">
-                                    <div class="col-md-2">
-                                        <label>Type</label>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <!-- radio -->
-                                        <div class="form-group clearfix">
-                                            <div class="icheck-primary d-inline">
-                                                <input type="radio" id="rd_maintenance" name="r1" checked>
-                                                <label for="rd_maintenance">
-                                                    Maintenance
-                                                </label>
-                                            </div>
-                                            <div class="icheck-primary d-inline">
-                                                <input type="radio" id="rd_ajout" name="r1">
-                                                <label for="rd_ajout">
-                                                    Ajout
-                                                </label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row p-2">
-                                    <div class="col-md-2"><LABEL>Module</LABEL></div>
-                                    <div class="col-md-6">
-
-                                        <select id="spinModule" class="col-md-8 form-control select2 select2-danger">
-                                            <?php require "Controller/SpinModule.php" ?>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="row p-2">
                                     <div class="col-md-6">
-                                        <button class="btn btn-info btn-sm" onclick="ajoutTache()">Valider</button>
+                                        <button class="btn btn-info btn-sm" onclick="ajoutTache()">Valider
+                                        </button>
                                     </div>
                                 </div>
-
-
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -227,7 +278,7 @@ require "../Connexion/db.php";
             <div class="modal-footer">
 
 
-                <button class="btn btn-default" data-dismiss="modal">fermer</button>
+                <button class="btn btn-default" data-dismiss="modal" onclick="location.reload();">fermer</button>
             </div>
         </div>
 
@@ -242,10 +293,55 @@ require "../Connexion/db.php";
         var rd_maintenance = document.getElementById('rd_maintenance').checked;
         var rd_ajout = document.getElementById('rd_ajout').checked;
         var rd_technique = document.getElementById('rd_technique').checked;
-         var rd_soft = document.getElementById('rd_soft').checked;
-        var  txt_observation = document.getElementById('txt_observation').value;
-        var  spinClient = document.getElementById('spinClient').value;
+        var checkgroup = document.getElementById('checkgroup').checked;
+        var rd_soft = document.getElementById('rd_soft').checked;
+        var txt_observation = document.getElementById('txt_observation').value;
+        var spinClient = document.getElementById('spinClient').value;
         var spinModule = document.getElementById('spinModule').value;
+        var spinRep = document.getElementById('spinRep').value;
+
+
+let   participant=[];
+if(spinRep!="")
+{
+    participant.push(spinRep);
+}
+        var table = document.getElementById("table_ajout_ligne_rapport"); //l'array est stocké dans une variable
+        var arrayLignes = document.getElementById("table_ajout_ligne_rapport").rows; //l'array est stocké dans une variable
+        var longueur = arrayLignes.length;//on peut donc appliquer la propriété length
+        var tr = table.getElementsByTagName("tr");
+        var i;
+        for (i = 1; i < longueur; i++) {
+            var td = tr[i].getElementsByTagName("td")[1];
+
+            if (td) {
+                var txtValue = td.textContent || td.innerText;
+                participant.push(txtValue)
+
+            } else {
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if (spinClient == "" || txt_observation == "") {
             document.getElementById('txt_erreur').innerHTML = " Vérifier vos champs";
 
@@ -264,11 +360,14 @@ require "../Connexion/db.php";
 
 
                     if (this.responseText == 1) {
-                        location.reload();
+                        $('#ModalSucces').modal('show');
+
+
                     } else {
                         document.getElementById('txt_erreur').innerHTML = " Erreur SQL" + this.responseText;
 
                         $('#ModalErreur').modal('show');
+
 
                     }
 
@@ -277,17 +376,89 @@ require "../Connexion/db.php";
             }
 
 
+            if (rd_maintenance) {
+                rd_maintenance = "M"
+            } else {
+                rd_maintenance = ""
+            }
+            if (rd_ajout) {
+                rd_ajout = "A"
+            } else {
+                rd_ajout = ""
+            }
+
+            if (rd_technique) {
+                rd_technique = "T"
+            } else {
+                rd_technique = ""
+            }
+
+            if (rd_soft) {
+                rd_soft = "S"
+            } else {
+                rd_soft = ""
+            }
+            if (checkgroup) {
+                checkgroup = "1"
+            } else {
+                checkgroup = "0"
+            }
+
+            var type = rd_ajout + rd_maintenance;
+            var nature = rd_soft + rd_technique;
 
             var parm = "Observation=" + txt_observation + "&CodeClient=" + spinClient + "&Module=" + spinModule +
-                "&maintenance=" + rd_maintenance + "&Ajout=" + rd_ajout + "&Technique=" + rd_technique+"&Soft="+rd_soft;
+                "&type=" + type + "&nature=" + nature + "&spinRep=" + spinRep+"&checkgroup="+checkgroup+"&array[]="+participant+"";
+console.error(parm)
             xmlhttp.open("GET", "Controller/ajoutTache.php?" + parm, true);
-            xmlhttp.send();
+           xmlhttp.send();
         }
     }
 
 
+    function ajoutLigneAffect() {
+
+        var Rep = document.getElementById("spinRep").value;
+        var RepAjout = document.getElementById("spinRepAjout").value;
+        let pos = document.getElementById('spinRepAjout').selectedIndex
+        var Nom = document.getElementById("spinRepAjout").options[pos].text;
+        document.getElementById("spinRepAjout").getElementsByTagName("option")[pos].disabled = true;
+        document.getElementById('spinRepAjout').selectedIndex = 0
+        var table_ajout_ligne_rapport = document.getElementById("table_ajout_ligne_rapport");
+
+        if (RepAjout == Rep) {
+            alert("deja affecte");
+        } else if (RepAjout == "" || RepAjout == "Aucun") {
+
+            alert("champs obligatoire")
+
+        } else {
 
 
+            var ligne = table_ajout_ligne_rapport.insertRow(-1);//on a ajouté une ligne
+            var colonne1 = ligne.insertCell(0);
+
+            colonne1.innerHTML = Nom;
+            var colonne2 = ligne.insertCell(1);
+            colonne2.innerHTML = RepAjout;
+
+
+            var colonne8 = ligne.insertCell(2);
+            colonne8.innerHTML = "<button  onclick='deleteRow(this)'  class='btn btn-danger'><i class='fa fa-close' ></i></button>";
+        }
+    }
+
+    function deleteRow(btn) {
+        var row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
+
+    function toggleShow() {
+        document.getElementById("divAffectGroup").hidden = !document.getElementById("divAffectGroup").hidden
+
+    }
+
+    document.getElementById("divAffectGroup").hidden = true
 </script>
 
 

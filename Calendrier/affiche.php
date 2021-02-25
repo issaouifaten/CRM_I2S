@@ -1,6 +1,7 @@
 <?php
 setlocale(LC_TIME, 'fr_FR', 'french', 'fre', 'fra');
 require "../Connexion/db.php";
+
 if (isset($_POST["aller"])) {
     $mm = $_POST["mois"];
     $ans = $_POST["annee"];
@@ -16,26 +17,38 @@ $codesalle = '';
 
 function getEventsDate($mois, $annee)
 {
+
+    session_start();
+    $CodeRepresentant=$_SESSION['CodeRepresentant'];
     $result = array();
-    $codesalle = '0001';
+
 
     require "../Connexion/db.php";
-    $sql = "SELECT jour_evenement,mois_evenement,annee_evenement,RaisonSociale ,HeurDebut,HeurFin,CodeActivite FROM Calendrier 
-inner join Reservation on Reservation.CodeReservation=Calendrier.CodeReservation 
-where mois_evenement=$mois  and annee_evenement=$annee";
 
-    $stmt = sqlsrv_query($conn, $sql);
-    if ($stmt === false) {
-        die(print_r(sqlsrv_errors(), true));
-    }
+    $tsql = "
+DECLARE	@return_value int
 
-    while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-        $result[] = $row["jour_evenement"];
-        $result[] = $row["RaisonSociale"];
+EXEC	@return_value = [dbo].[ListeCalendrierTacheSuivieCRM]
+		@CodeAffecte = N'$CodeRepresentant',
+		 @m='$mois',
+		 @y='$annee'";
+    $q = sqlsrv_query($conn, $tsql);
 
 
-    }
-    sqlsrv_free_stmt($stmt);
+    $long=0;
+    do {
+        while ($row = sqlsrv_fetch_array($q)) {
+            // Loop through each result set and add to result array
+            $result[] = $row["jour_evenement"];
+            $result[] = "  <p  style=' word-break: break-word;
+  word-wrap: break-word;font-size: 12px;
+  width: 120px;   ' class='bg-blue-grey border '>".$row["RaisonSociale"]."&nbsp ** &nbsp".$row["Duree"]."</p>";
+            $long++;
+
+
+
+        }
+    } while (sqlsrv_next_result($q));
 
     return $result;
 }
@@ -62,30 +75,11 @@ function afficheEvent($i, $event)
 function afficheEventDay($i, $annee, $mois)
 {
     $codesalle = '0001';
-    $texte = "";
-
-    require "../Connexion/db.php";
-    $sql = "SELECT jour_evenement,mois_evenement,annee_evenement,RaisonSociale ,HeurDebut,HeurFin,LibelleActivite ,Tel FROM Calendrier 
-inner join Reservation on Reservation.CodeReservation=Calendrier.CodeReservation 
-where mois_evenement=$mois  and annee_evenement=$annee  and jour_evenement=$i   ORDER BY jour_evenement ";
+    $texte = "****";
 
 
-    $stmt = sqlsrv_query($conn, $sql);
-    if ($stmt === false) {
-        die(print_r(sqlsrv_errors(), true));
-    }
-
-    while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-
-        $texte .= "<tr><td>" . $row["RaisonSociale"] . "</td>";
-        $texte .= "<td>" . $row["Tel"] . "</td>";
-        $texte .= "<td>" . $row["LibelleActivite"] . "</td>";
-        $texte .= "<td>" . date_format($row["HeurDebut"], 'h:i') . "</td>";
-        $texte .= "<td>" . date_format($row["HeurFin"], 'h:i') . "</td></tr>";
 
 
-    }
-    sqlsrv_free_stmt($stmt);
 
     return $texte;
 }
@@ -198,10 +192,10 @@ else $numero_jour1er--; // Sinon on mets lundi à 0, Mardi à 1, Mercredi à 2..
             <div class="container-fluid">
                 <div class="row">
 
-                    <div class="col-md-6 bg-gradient-white">
+                    <div class="col-md-12 bg-gradient-white">
                         <h1>
                             <?php echo '<a  class="btn btn-danger" href="?m=' . $mois_avant . '&amp;y=' . $annee_avant . '""> <i class="fa fa-arrow-alt-circle-left"></i>  </a>  '
-                                . $m[$numero_mois] . ' ' . $annee . ' 
+                                . $m[$numero_mois] . ' ' . $annee . '
                              <a class="btn btn-danger"  href="?m=' . $mois_apres . '&amp;y=' . $annee_apres . '"> <i class="fa fa-arrow-alt-circle-right"></i></a>'; ?></h1>
 
 
@@ -230,13 +224,13 @@ else $numero_jour1er--; // Sinon on mets lundi à 0, Mardi à 1, Mercredi à 2..
                                     echo '<td  class="jourEvenement';
 
                                     if (isset($coloreNum) && $coloreNum == $i) echo ' lienCalendrierJour';
-                                    echo "   onclick=\"affiche('" . afficheEventDay($i, $annee, $numero_mois) . "','" . $i . "','" . $annee . "','" . $numero_mois . "')\" >   " . $i . "</td>";
+                                    echo "   onclick=\"affiche('" . afficheEventDay($i, $annee, $numero_mois) . "','" . $i . "','" . $annee . "','" . $numero_mois . "')\" >   " . $i.afficheEvent($i, $event) . "</td>";
 
                                 } else {
                                     echo '<td ';
 
                                     if (isset($coloreNum) && $coloreNum == $i) echo 'class="lienCalendrierJour"';
-                                    echo "  onclick=\"affiche('" . afficheEventDay($i, $annee, $numero_mois) . "','" . $i . "','" . $annee . "','" . $numero_mois . "')\" >   " . $i . "</td>";
+                                    echo "  onclick=\"affiche('" . afficheEventDay($i, $annee, $numero_mois) . "','" . $i . "','" . $annee . "','" . $numero_mois . "')\" >   " . $i.afficheEvent($i, $event) . "</td>";
 
                                 }
 
@@ -252,12 +246,12 @@ else $numero_jour1er--; // Sinon on mets lundi à 0, Mardi à 1, Mercredi à 2..
                                         // Ce jour possède un événement
                                         if (in_array($i, $event)) {
                                             echo '<td class="jourEvenement"';
-                                            echo "  onclick=\"affiche('" . afficheEventDay($i, $annee, $numero_mois) . "','" . $i . "','" . $annee . "','" . $numero_mois . "')\" >   " . $i . "</td>";
+                                            echo "  onclick=\"affiche('" . afficheEventDay($i, $annee, $numero_mois) . "','" . $i . "','" . $annee . "','" . $numero_mois . "')\" >   " . $i.afficheEvent($i, $event) . "</td>";
                                         } else {
                                             echo '<td ';
 
                                             if (isset($coloreNum) && $coloreNum == $i) echo 'class="lienCalendrierJour"';
-                                            echo "  onclick=\"affiche('" . afficheEventDay($i, $annee, $numero_mois) . "','" . $i . "','" . $annee . "','" . $numero_mois . "')\" >   " . $i . "</td>";
+                                            echo "  onclick=\"affiche('" . afficheEventDay($i, $annee, $numero_mois) . "','" . $i . "','" . $annee . "','" . $numero_mois . "')\" >   " . $i.afficheEvent($i, $event) . "</td>";
 
                                         }
                                     } else {
@@ -272,186 +266,17 @@ else $numero_jour1er--; // Sinon on mets lundi à 0, Mardi à 1, Mercredi à 2..
 
                         <br/>
                     </div>
-                    <div class="col-md-6 bg-gradient-white" id="divDetail">
-                        <div class="row p1" >
-                            <div class="col-md-6   ">
-                                <h3> <i class="fa fa-calendar"></i>
-                                 <span   id="Day"></span></h3>
-                            </div>
-                        <div class="col-md-6  ">
-
-                            <h3> <!-- Trigger the modal with a button -->
-                            <button type="button" class="btn btn-danger btn-sm  right " data-toggle="modal"
-                                    data-target="#ModalAjoutReservation"> <i class="fa fa-plus"></i> Ajout Reservation
-                            </button>
-                            </h3>
-                        </div>
-                        </div>
-                        <div class="border" style="overflow: auto;height: 250px">
-                            <table class="table table-bordered table-striped">
-                                <thead class="table-danger-head table-striped">
-                                <th><i class="fa fa-user"></i> Client</th>
-                                <th><i class="fa fa-phone"></i> Tel</th>
-                                <th>Activité</th>
-                                <th>Début</th>
-                                <th>Fin</th>
-                                </thead>
-                                <tbody id="listevent2"></tbody>
-                            </table>
-                        </div>
-
-
-
-                    </div>
 
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="Modal" role="dialog">
-        <div class="modal-dialog modal-lg">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header alert-red">
-
-                    <h4 id="day" class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-
-                    <br>
-                    <table class="table table-bordered">
-                        <thead>
-                        <th><i class="fa fa-user"></i> Client</th>
-                        <th><i class="fa fa-phone"></i> Tel</th>
-                        <th>Activité</th>
-                        <th>Début</th>
-                        <th>Fin</th>
-                        </thead>
-                        <tbody id="listevent"></tbody>
-                    </table>
-                    <div id="divAddEvent">
-
-
-                    </div>
-
-
-                </div>
-                <div class="modal-footer">
-
-
-                    <button class="btn btn-default" data-dismiss="modal">fermer</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="modal fade  " id="ModalAjoutReservation" role="dialog">
-        <div class="modal-dialog modal-lg">
-            
-            <!-- Modal content-->
-            <div class="modal-content modal-lg">
-                <div class="modal-header bg-danger">
-
-                    <h4 id="Day2" class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-
-                    <div id="divAjoutReservation">
-                        <div class="row p-3">
-                            <div class="col-md-2">.</div>
-                            <div class="col-md-4">
-                                <label>Heure Debut </label>
-                                <input type="time" id="heurdebut">
-                            </div>
-                            <div class="col-md-4">
-                                <label>Heure Fin </label>
-                                <input type="time" id="heurfin">
-                            </div>
-
-                        </div>
-                        <div class="row ">
-
-
-                            <div class="col-md-3">
-
-
-                                <div class="form-group">
-
-                                    <select id="spinClient" class="form-control select2 select2-danger"
-                                            data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                        <?php include "Controller/SpinClient.php" ?>
-                                    </select>
-                                </div>
-
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group row">
-
-
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Nom Prenom">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group row">
-                                    <input class="form-control" autocomplete="off" type="text" placeholder="tel"
-                                           Pattern="[0-9]{8}"
-                                           size="8"
-                                           minlength="8"
-                                           maxlength="8" required id="telclient">
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div class="row p-3">
-                            <div class="col-md-6">
-                                <LABEL>Salle : </LABEL>
-                                <select is="spinSalle" class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger">
-                                    <?php include "Controller/SpinSalle.php" ?>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <LABEL>Respensable : </LABEL>
-                                <select is="spinRespensable" class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger">
-                                    <?php include "Controller/SpinRespensable.php" ?>
-                                </select>
-                            </div>
-
-
-                            <div class="col-md-6">
-                                <LABEL>Soin</LABEL>
-
-                                <select is="spinActivite" class="form-control select2 select2-danger"
-                                        data-dropdown-css-class="select2-danger">
-                                    <?php include "Controller/SpinActivite.php" ?>
-                                </select>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-                <div class="modal-footer">
-
-
-                    <button class="btn btn-default" data-dismiss="modal">fermer</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
 </div>
 </body>
 <!-- end: Javascript -->
 <script>
-    document.getElementById('divDetail').hidden = 'hidden';
 
     function affiche(event, day, anne, mois) {
         if (event != "")
@@ -505,139 +330,22 @@ else $numero_jour1er--; // Sinon on mets lundi à 0, Mardi à 1, Mercredi à 2..
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../plugins/jszip/jszip.min.js"></script>
+<script src="../plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
-<script>
-    $(function () {
-        //Initialize Select2 Elements
-        $('.select2').select2()
 
-        //Initialize Select2 Elements
-        $('.select2bs4').select2({
-            theme: 'bootstrap4'
-        })
 
-        //Datemask dd/mm/yyyy
-        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'})
-        //Datemask2 mm/dd/yyyy
-        $('#datemask2').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'})
-        //Money Euro
-        $('[data-mask]').inputmask()
-
-        //Date range picker
-        $('#reservationdate').datetimepicker({
-            format: 'L'
-        });
-        //Date range picker
-        $('#reservation').daterangepicker()
-        //Date range picker with time picker
-        $('#reservationtime').daterangepicker({
-            timePicker: true,
-            timePickerIncrement: 30,
-            locale: {
-                format: 'MM/DD/YYYY hh:mm A'
-            }
-        })
-        //Date range as a button
-        $('#daterange-btn').daterangepicker(
-            {
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                },
-                startDate: moment().subtract(29, 'days'),
-                endDate: moment()
-            },
-            function (start, end) {
-                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-            }
-        )
-
-        //Timepicker
-        $('#timepicker').datetimepicker({
-            format: 'LT'
-        })
-
-        //Bootstrap Duallistbox
-        $('.duallistbox').bootstrapDualListbox()
-
-        //Colorpicker
-        $('.my-colorpicker1').colorpicker()
-        //color picker with addon
-        $('.my-colorpicker2').colorpicker()
-
-        $('.my-colorpicker2').on('colorpickerChange', function (event) {
-            $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-        })
-
-        $("input[data-bootstrap-switch]").each(function () {
-            $(this).bootstrapSwitch('state', $(this).prop('checked'));
-        })
-
-    })
-    // BS-Stepper Init
-    document.addEventListener('DOMContentLoaded', function () {
-        window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-    })
-
-    // DropzoneJS Demo Code Start
-    Dropzone.autoDiscover = false
-
-    // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-    var previewNode = document.querySelector("#template")
-    previewNode.id = ""
-    var previewTemplate = previewNode.parentNode.innerHTML
-    previewNode.parentNode.removeChild(previewNode)
-
-    var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-        url: "/target-url", // Set the url
-        thumbnailWidth: 80,
-        thumbnailHeight: 80,
-        parallelUploads: 20,
-        previewTemplate: previewTemplate,
-        autoQueue: false, // Make sure the files aren't queued until manually added
-        previewsContainer: "#previews", // Define the container to display the previews
-        clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-    })
-
-    myDropzone.on("addedfile", function (file) {
-        // Hookup the start button
-        file.previewElement.querySelector(".start").onclick = function () {
-            myDropzone.enqueueFile(file)
-        }
-    })
-
-    // Update the total progress bar
-    myDropzone.on("totaluploadprogress", function (progress) {
-        document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
-    })
-
-    myDropzone.on("sending", function (file) {
-        // Show the total progress bar when upload starts
-        document.querySelector("#total-progress").style.opacity = "1"
-        // And disable the start button
-        file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
-    })
-
-    // Hide the total progress bar when nothing's uploading anymore
-    myDropzone.on("queuecomplete", function (progress) {
-        document.querySelector("#total-progress").style.opacity = "0"
-    })
-
-    // Setup the buttons for all transfers
-    // The "add files" button doesn't need to be setup because the config
-    // `clickable` has already been specified.
-    document.querySelector("#actions .start").onclick = function () {
-        myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
-    }
-    document.querySelector("#actions .cancel").onclick = function () {
-        myDropzone.removeAllFiles(true)
-    }
-    // DropzoneJS Demo Code End
-</script>
 
 </body>
 </html>

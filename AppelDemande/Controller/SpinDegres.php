@@ -1,7 +1,7 @@
 <?php
 
-;
-$sql =  "SELECT * from TypeActivite";
+
+$sql =  "SELECT CodeDegres,Designation from DegresImportanceTache";
 
 $stmt = sqlsrv_query($conn, $sql);
 if ($stmt === false) {
@@ -11,7 +11,7 @@ if ($stmt === false) {
 $spin="";
 while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
 
-$spin.="<option value='".$row['TypeActivite']."'  >".$row['Designation']."</option>";
+$spin.="<option value='".$row['CodeDegres']."'  >".utf8_encode($row['Designation'])."</option>";
 
 
 

@@ -1,7 +1,11 @@
 <?php
 setlocale(LC_TIME, 'fr_FR', 'french', 'fre', 'fra');
 require "../Connexion/db.php";
-
+session_start();
+if(  $_SESSION['username']=="")
+{
+    header("location:../index.php");
+}
 ?>
 
 
@@ -71,53 +75,118 @@ require "../Connexion/db.php";
         <!-- Main content -->
         <div class="content bg-white ">
             <div class="container-fluid  ">
-                <div class="row p-5">
-                    <div class="col-md-11">
+                <div class="row p-2">
+                    <div class="col-md-12">
                         <!-- /.card -->
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Liste Respensable</h3>
+                                <h3 class="card-title">Ajout appel</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="table" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>CODE</th>
-                                        <th>NOM</th>
-                                        <th>ACTIF</th>
 
 
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php require "controller/tableRespensable.php" ?>
+                                <div class="row p-2">
+                                    <div class="col-md-2"><LABEL>CLIENT</LABEL></div>
+                                    <div class="col-md-6">
+
+                                        <select id="spinClient" class="col-md-8 form-control select2 select2-danger">
+                                            <?php require "Controller/SpinClient.php" ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+
+                                    <div class="col-md-2">
+                                        <label>Observation</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <textarea id="txt_observation" class="form-control" rows="5"></textarea>
+                                    </div>
+
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-2">
+                                        <label>Nature</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <!-- radio -->
+                                        <div class="form-group clearfix">
+
+                                            <div class="icheck-primary d-inline">
+                                                <input type="checkbox" id="rd_soft"  >
+                                                <label for="rd_soft">
+                                                    SOFT
+                                                </label>
+                                            </div>
+                                            <div class="icheck-primary d-inline">
+                                                <input type="checkbox" id="rd_technique"  >
+                                                <label for="rd_technique">
+                                                    TECHNIQUE
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-2">
+                                        <label>suite</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <!-- radio -->
+                                        <div class="form-group clearfix">
+
+                                            <div class="icheck-primary d-inline">
+                                                <input type="checkbox" id="rd_rapport"  >
+                                                <label for="rd_rapport">
+                                                    Rapport
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-2"><LABEL>Affecté à</LABEL></div>
+                                    <div class="col-md-6">
+                                        <select id="spinRep" class="col-md-8 form-control  select2 select2-danger">
+                                            <?php require "Controller/SpinRespensable.php" ?>
+                                        </select>
+                                    </div>
 
 
-                                    </tbody>
-                                    <tfoot>
+                                </div>
+                                <div class="row p-2">
 
-                                    </tfoot>
-                                </table>
+                                    <div class="col-md-2">
+                                        <label>Degres</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select id="spinDegres" class="col-md-12 form-control select2 select2-danger">
+                                            <?php require "Controller/SpinDegres.php" ?>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <div class="row p-2">
+                                    <div class="col-md-6">
+                                        <button class="btn btn-info btn-sm" onclick="ajoutTache()">Valider</button>
+                                    </div>
+                                </div>
+
+
                             </div>
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
 
                     </div>
-                    <div class="col-md-1">
-                        <button class="btn btn-app bg-danger" data-toggle="modal" data-target="#ModalAjout">
-
-                            <i class="fas fa-user-plus"></i> AJOUT
-                        </button>
-
-                        <button class="btn btn-app bg-success" data-toggle="modal" data-target="#ModalModif">
-
-                            <i class="fas fa-user-edit"></i> EDIT
-                        </button>
-
-                    </div>
 
 
                 </div>
@@ -128,44 +197,6 @@ require "../Connexion/db.php";
 
 </div>
 
-
-<div class="modal fade" id="ModalAjout" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header alert-red">
-
-                <h4 id="day" class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-                <h4>Ajout Respensable</h4>
-                <hr>
-                <div class="row">
-
-
-                    <div class="col-md-6">
-                        <label>Nom Respensable</label>
-                        <input class="form-control-border " id="txt_nom" type="text">
-                    </div>
-                    <label class="font-weight-bolder col-md-2">
-                        <input class="custom-checkbox" type="checkbox" id="check_actif"> Actif
-                    </label>
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-
-
-                <button class="btn btn-danger" onclick="AddRespensable()"> Valider</button>
-                <button class="btn btn-default" data-dismiss="modal">fermer</button>
-
-            </div>
-        </div>
-
-    </div>
-</div>
 
 <div class="modal fade" id="ModalErreur" role="dialog">
     <div class="modal-dialog">
@@ -192,41 +223,26 @@ require "../Connexion/db.php";
 
     </div>
 </div>
-<div class="modal fade" id="ModalModif" role="dialog">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="ModalSucces" role="dialog">
+    <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header alert-red">
 
-                <h4 id="day" class="modal-title"></h4>
+                <h4 class="modal-title"> Ajout </h4>
             </div>
             <div class="modal-body">
-                <h4>Modifier Respensable</h4>
-                <hr>
-                <div class="row">
-                    <div class="col-md-4">
-                        <label>Code</label>
-                        <input class="form-control-border " readonly id="txt_code_modif" type="text">
-                    </div>
 
-                    <div class="col-md-6">
-                        <label>Nom Respensable</label>
-                        <input class="form-control-border " id="txt_nom_modif" type="text">
-                    </div>
-                    <label class="font-weight-bolder col-md-2">
-                        <input class="custom-checkbox" type="checkbox" id="check_actif_modif"> Actif
-                    </label>
-                </div>
+                <br>
+                <h4> Ligne Ajoutée    </span></h4>
 
 
             </div>
             <div class="modal-footer">
 
 
-                <button class="btn btn-danger" onclick="ModifRespensable()"> Valider</button>
-                <button class="btn btn-default" data-dismiss="modal">fermer</button>
-
+                <button class="btn btn-default" data-dismiss="modal" onclick="location.reload();">fermer</button>
             </div>
         </div>
 
@@ -237,83 +253,24 @@ require "../Connexion/db.php";
 
 
 <script>
-    function AddRespensable() {
-        var text_nom = document.getElementById('txt_nom').value;
-        var check_actif = document.getElementById('check_actif').checked;
+    function ajoutTache() {
 
-        if (text_nom == "") {
-            document.getElementById('txt_erreur').innerHTML = " NomRespensable est obligatoire";
+        var rd_rapport = document.getElementById('rd_rapport').checked;
+        var rd_technique = document.getElementById('rd_technique').checked;
+         var rd_soft = document.getElementById('rd_soft').checked;
+        var  txt_observation = document.getElementById('txt_observation').value;
+        var  spinClient = document.getElementById('spinClient').value;
 
-            $('#ModalErreur').modal('show');
-
-        } else {
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else { // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    if (this.responseText) {
-                        location.reload();
-                    } else {
-                        document.getElementById('txt_erreur').innerHTML = " Erreur SQL";
-
-                        $('#ModalErreur').modal('show');
-
-                    }
-
-
-                }
-            }
-            var parm = "Actif=" + check_actif + "&Nom=" + text_nom;
-            xmlhttp.open("GET", "Controller/ajoutRespensable.php?" + parm, true);
-            xmlhttp.send();
-        }
-    }
-
-    function checkRespensable(codeRep, nomRep, actifRep) {
-
-        document.getElementById('txt_nom_modif').value = nomRep;
-        document.getElementById('txt_code_modif').value = codeRep;
-        if (actifRep == 1)
-            document.getElementById('check_actif_modif').checked = true;
-        else
-            document.getElementById('check_actif_modif').checked = false;
-        var table = document.getElementById("table") ; //l'array est stocké dans une variable
-        var arrayLignes = document.getElementById("table").rows; //l'array est stocké dans une variable
-        var longueur = arrayLignes.length;//on peut donc appliquer la propriété length
-        var tr = table.getElementsByTagName("tr");
-        var i;
-        for (i = 0; i < longueur; i++) {
-            var td = tr[i].getElementsByTagName("td")[0];
-
-            if (td) {
-                var txtValue = td.textContent || td.innerText;
-                //  var txtValue2 = td2.textContent || td2.innerText;
-                if (txtValue.toUpperCase().indexOf(codeRep.toUpperCase()) > -1) {
-                    tr[i].style.backgroundColor = "#bdcbf5";
+        var spinRep = document.getElementById('spinRep').value;
+        var spinDegres = document.getElementById('spinDegres').value;
 
 
 
-                } else {
-                    tr[i].style.backgroundColor = "white";
-                }
-            }else{
 
-            }
-        }
 
-    }
 
-    function ModifRespensable() {
-        var text_nom = document.getElementById('txt_nom_modif').value;
-        var text_code = document.getElementById('txt_code_modif').value;
-        var check_actif = document.getElementById('check_actif_modif').checked;
-
-        if (text_nom == "") {
-            document.getElementById('txt_erreur').innerHTML = " NomRespensable est obligatoire";
+        if (spinClient == "" || txt_observation == "") {
+            document.getElementById('txt_erreur').innerHTML = " Vérifier vos champs";
 
             $('#ModalErreur').modal('show');
 
@@ -326,25 +283,53 @@ require "../Connexion/db.php";
             }
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
+                    console.error(this.responseText);
 
 
-                    if (this.responseText) {
-                        location.reload();
+                    if (this.responseText == 1) {
+                        $('#ModalSucces').modal('show');
+
+
                     } else {
-                        document.getElementById('txt_erreur').innerHTML = " Erreur SQL";
+                        document.getElementById('txt_erreur').innerHTML = " Erreur SQL" + this.responseText;
 
                         $('#ModalErreur').modal('show');
+
 
                     }
 
 
                 }
             }
-            var parm = "Actif=" + check_actif + "&Nom=" + text_nom+"&Code="+text_code;
-            xmlhttp.open("GET", "Controller/modifRespensable.php?" + parm, true);
+
+
+
+
+
+        if(rd_technique)
+        {
+            rd_technique="T"
+        }else{
+            rd_technique=""
+        }
+
+        if(rd_soft)
+        {
+            rd_soft="S"
+        }else{
+            rd_soft=""
+        }
+
+        var nature=rd_soft+rd_technique;
+
+        var parm = "Observation=" + txt_observation + "&CodeClient=" + spinClient +
+               "&nature="+nature+"&spinRep="+spinRep+"&rd_rapport="+rd_rapport+"&spinDegres="+spinDegres;
+
+            xmlhttp.open("GET", "Controller/ajoutAppel.php?" + parm, true);
             xmlhttp.send();
         }
     }
+
 
 
 
@@ -408,6 +393,14 @@ require "../Connexion/db.php";
             "responsive": true,
         });
     });
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
+    })
+
 </script>
 </body>
 </html>

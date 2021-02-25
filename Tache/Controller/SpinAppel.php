@@ -1,7 +1,7 @@
 <?php
 
 
-$sql =  "SELECT * from Salle";
+$sql =  " select  NumeroAppel,Description from AppelDemandeCRM";
 
 $stmt = sqlsrv_query($conn, $sql);
 if ($stmt === false) {
@@ -10,15 +10,8 @@ if ($stmt === false) {
 
 $spin="";
 while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-$c=$row['CodeSalle'];
-$n=$row['LibelleSalle'];
 
-$spin.="<tr onclick='checkSalle(\"$c\",\"$n\")' > 
-<td>".$row['CodeSalle']."</td>";
-$spin.="<td>".$row['LibelleSalle']."</td> ";
-
-
-$spin.="</tr> ";
+$spin.="<option value='".$row['NumeroAppel']."'  >".utf8_encode($row['Description'])."</option>";
 
 
 

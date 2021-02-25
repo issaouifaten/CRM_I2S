@@ -1,7 +1,11 @@
 <?php
 setlocale(LC_TIME, 'fr_FR', 'french', 'fre', 'fra');
 require "../Connexion/db.php";
-
+session_start();
+if(  $_SESSION['username']=="")
+{
+    header("location:../index.php");
+}
 ?>
 
 
@@ -71,53 +75,51 @@ require "../Connexion/db.php";
         <!-- Main content -->
         <div class="content bg-white ">
             <div class="container-fluid  ">
-                <div class="row p-5">
-                    <div class="col-md-11">
+                <div class="row p-2">
+                    <div class="col-md-12">
                         <!-- /.card -->
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Liste Activité</h3>
+                                <h3 class="card-title"> </h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="table" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>CODE</th>
-                                        <th>Type Activité</th>
-                                        <th>Designation Activité</th>
 
 
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php require "controller/tableActivite.php" ?>
+                                <div class="row p-2">
+                                    <div class="col-md-1"><LABEL>Affecté à</LABEL></div>
+                                    <div class="col-md-3">
+                                        <select id="spinRep" onchange="FillCalander()"  class="col-md-12 form-control  select2 select2-danger">
+                                            <?php require "Controller/SpinRespensable.php" ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1"><LABEL>DateDebut</LABEL></div>
+                                    <?php   $date=date("Y-m-d")?>
+                                    <div class="col-md-2"><input type="date" id="datedebut"  value="<?php echo $date?>"  class="form-control"  onchange="FillCalander()" ></div>
+                                    <div class="col-md-1"><LABEL>DateFin</LABEL></div>
+                                    <div class="col-md-2"><input type="date" id="datefin" value="<?php echo $date?>"  class="form-control"  onchange="FillCalander()" ></div>
+
+
+                                </div>
+                                <table class="table table-responsive overflow-auto">
+
+                                    <tbody id="data_caland" style="height: 500px">
 
 
                                     </tbody>
-                                    <tfoot>
-
-                                    </tfoot>
                                 </table>
+
+
+
+
+
                             </div>
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
 
                     </div>
-                    <div class="col-md-1">
-                        <button class="btn btn-app bg-danger" data-toggle="modal" data-target="#ModalAjout">
-
-                            <i class="fas fa-user-plus"></i> AJOUT
-                        </button>
-
-                        <button class="btn btn-app bg-success" data-toggle="modal" data-target="#ModalModif">
-
-                            <i class="fas fa-user-edit"></i> EDIT
-                        </button>
-
-                    </div>
 
 
                 </div>
@@ -128,47 +130,6 @@ require "../Connexion/db.php";
 
 </div>
 
-
-<div class="modal fade" id="ModalAjout" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header alert-red">
-
-                <h4 id="day" class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-                <h4>Ajout Activite</h4>
-                <hr>
-                <div class="row">
-
-                    <div class="col-md-4">
-                        <LABEL>Type : </LABEL>
-                        <select id="spinType_ajout" class="form-control select2 select2-danger">
-                            <?php include "controller/SpinTypeActivite.php" ?>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label>Designation </label><br>
-                        <input class="form-control" id="txt_nom" type="text">
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-
-
-                <button class="btn btn-danger" onclick="AddActivite()"> Valider</button>
-                <button class="btn btn-default" data-dismiss="modal">fermer</button>
-
-            </div>
-        </div>
-
-    </div>
-</div>
 
 <div class="modal fade" id="ModalErreur" role="dialog">
     <div class="modal-dialog">
@@ -195,56 +156,26 @@ require "../Connexion/db.php";
 
     </div>
 </div>
-<div class="modal fade" id="ModalModif" role="dialog">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="ModalSucces" role="dialog">
+    <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header alert-red">
 
-                <h4 id="day" class="modal-title"></h4>
+                <h4 class="modal-title"> Ajout </h4>
             </div>
             <div class="modal-body">
-                <h4>Modifier Activite</h4>
-                <hr>
-                <div class="row p-2">
-                    <div class="col-md-2">
-                        <label>Code</label>
-                    </div>
-                    <div class="col-md-4">
-                        <input class="form-control " readonly id="txt_code_modif" type="text">
-                    </div>
-                </div>
-                <div class="row p-2">
-                    <div class="col-md-2">
-                        <label>Type</label>
-                    </div>
-                    <div class="col-md-4">
 
-                        <select id="spinType_modif" class="form-control select2 select2-danger">
-                            <?php require "controller/SpinTypeActivite.php" ?>
-                        </select>
-                    </div>
-                </div>
-
-
-                <div class="row p-2">
-                    <div class="col-md-2">
-                        <label>Designation </label>
-                    </div>
-                    <div class="col-md-4">
-                        <input class="form-control " id="txt_nom_modif" type="text">
-                    </div>
-                </div>
+                <br>
+                <h4> Ligne Ajoutée    </span></h4>
 
 
             </div>
             <div class="modal-footer">
 
 
-                <button class="btn btn-danger" onclick="ModifActivite()"> Valider</button>
-                <button class="btn btn-default" data-dismiss="modal">fermer</button>
-
+                <button class="btn btn-default" data-dismiss="modal" onclick="location.reload();">fermer</button>
             </div>
         </div>
 
@@ -255,17 +186,14 @@ require "../Connexion/db.php";
 
 
 <script>
-    function AddActivite() {
-        var text_nom = document.getElementById('txt_nom').value;
-        var spinType_ajout = document.getElementById('spinType_ajout').value;
+    function FillCalander() {
+
+        var spinRep = document.getElementById('spinRep').value;
+        var datedebut = document.getElementById('datedebut').value;
+        var datefin = document.getElementById('datefin').value;
 
 
-        if (text_nom == "") {
-            document.getElementById('txt_erreur').innerHTML = " NomRespensable est obligatoire";
-
-            $('#ModalErreur').modal('show');
-
-        } else {
+        if (spinRep != ""||datedebut!=""||datefin!="") {
             if (window.XMLHttpRequest) {
                 // code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp = new XMLHttpRequest();
@@ -274,93 +202,28 @@ require "../Connexion/db.php";
             }
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    if (this.responseText) {
-                        location.reload();
-                    } else {
-                        document.getElementById('txt_erreur').innerHTML = " Erreur SQL";
+                    console.error(this.responseText);
 
-                        $('#ModalErreur').modal('show');
 
-                    }
+                    document.getElementById('data_caland').innerHTML = this.responseText;
 
 
                 }
             }
-            var parm = "Nom=" + text_nom + "&Type=" + spinType_ajout;
-            xmlhttp.open("GET", "Controller/ajoutActivitie.php?" + parm, true);
+
+
+            var parm = "spinRep=" + spinRep+"&datedebut="+datedebut+"&datefin="+datefin;
+
+            xmlhttp.open("GET", "Controller/listdetail.php?" + parm, true);
             xmlhttp.send();
+        }else{
+
+            document.getElementById('data_caland').innerHTML = "";
+
         }
     }
 
-    function checkActivite(codeRep, nomRep) {
-
-        document.getElementById('txt_nom_modif').value = nomRep;
-        document.getElementById('txt_code_modif').value = codeRep;
-
-        var table = document.getElementById("table"); //l'array est stocké dans une variable
-        var arrayLignes = document.getElementById("table").rows; //l'array est stocké dans une variable
-        var longueur = arrayLignes.length;//on peut donc appliquer la propriété length
-        var tr = table.getElementsByTagName("tr");
-        var i;
-        for (i = 0; i < longueur; i++) {
-            var td = tr[i].getElementsByTagName("td")[0];
-
-            if (td) {
-                var txtValue = td.textContent || td.innerText;
-                //  var txtValue2 = td2.textContent || td2.innerText;
-                if (txtValue.toUpperCase().indexOf(codeRep.toUpperCase()) > -1) {
-                    tr[i].style.backgroundColor = "#bdcbf5";
-
-
-                } else {
-                    tr[i].style.backgroundColor = "white";
-                }
-            } else {
-
-            }
-        }
-
-    }
-
-    function ModifActivite() {
-        var text_nom = document.getElementById('txt_nom_modif').value;
-        var text_code = document.getElementById('txt_code_modif').value;
-        var Type = document.getElementById('spinType_modif').value;
-
-        if (text_nom == "") {
-            document.getElementById('txt_erreur').innerHTML = " NomRespensable est obligatoire";
-
-            $('#ModalErreur').modal('show');
-
-        } else {
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else { // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-
-
-                    if (this.responseText == 1) {
-                        location.reload();
-                    } else {
-                        document.getElementById('txt_erreur').innerHTML = " Erreur SQL";
-
-                        $('#ModalErreur').modal('show');
-
-                    }
-
-
-                }
-            }
-            var parm = "Nom=" + text_nom + "&Code=" + text_code + "&Type=" + Type;
-            xmlhttp.open("GET", "Controller/modifActivite.php?" + parm, true);
-            xmlhttp.send();
-        }
-    }
-
+    FillCalander();
 
 </script>
 
@@ -429,7 +292,6 @@ require "../Connexion/db.php";
     $('.select2bs4').select2({
         theme: 'bootstrap4'
     })
-
 
 </script>
 </body>

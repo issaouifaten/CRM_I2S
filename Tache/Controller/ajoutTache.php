@@ -7,30 +7,42 @@ require "../../CompteurPiece/CompteurPiece.php";
 $code=getCompteurPiece("TacheDeveloppeur");
 $CodeClient=$_GET['CodeClient'];
 $Module=$_GET['Module'];
-$Technique=$_GET['Technique'];
-$Soft=$_GET['Soft'];
-$maintenance=$_GET['maintenance'];
-$Ajout=$_GET['Ajout'];
+
 $Observation=utf8_decode($_GET['Observation']);
-$nature="";
-if($Soft)
-{
-    $nature+="S";
+session_start();
+$nomuser=  $_SESSION['username'];
+$nature=$_GET['nature'];
+$type=$_GET['type'];
+$checkgroup=$_GET['checkgroup'];
+$spinRep=$_GET['spinRep'];
+$s =$_GET['array'];
+
+$array=  explode(",",$s[0]);
+$test=1;
+
+for ($i=0;$i<count($array);$i++)
+{ $codparticipant=$array[$i] ;
+$sql="insert into ListParticipantTache(  NumeroTache,CodePersonnel,NumeroOrdre,DateCreation,NomUtilisateur   )
+values(?, '$codparticipant',isnull((select isnull(max(NumeroOrdre)+1,1) from ListParticipantTache where NumeroTache=? ),1),getdate(),?)";
+// echo $sql."<br>";
+    $stmt = sqlsrv_prepare($conn, $sql, array(&$code ,&$code, &$nomuser ));
+
+    if (!$stmt) {
+        //   echo '!sql <br>';
+        die(print_r(sqlsrv_errors(), true));
+        $test=0;
+    }
+
+
+    if (sqlsrv_execute($stmt) === false) {
+        //  echo 'type <br>';
+        die(print_r(sqlsrv_errors(), true));
+        $test=0;
+    }
+
 }
-if($Technique)
-{
-    $nature+="T";
-}
-
-if($Ajout)
-{$type="A";
-
-}ELSE{
-    $type="M";
-}
 
 
-$nomuser="test";
 
 $sql =  "insert into  TacheSuivieDeveloppeur(   NumeroTache
       ,CodeClient
@@ -40,14 +52,14 @@ $sql =  "insert into  TacheSuivieDeveloppeur(   NumeroTache
       ,CodeModule
       ,DateCreation
       ,NomUtilisateur
-      ,NomAffect
+      ,CodeAffecte
       ,Reponse
       ,CodeDegresImportance
-      ,NumeroEtat)values
-( ?,?,?,?,?,?,getdate(),? ,'','','','E13'  )";
-//echo $sql.$Nom.$Actif;
-$stmt = sqlsrv_prepare($conn, $sql, array(&$code,&$CodeClient,&$Observation,&$nature, &$type,&$Module,&$nomuser));
-$test=1;
+      ,NumeroEtat,NomAffect,Groupe)values
+( ?,?,?,'$nature',?,?,getdate(),? ,?,'','','E96'  ,'',?)";
+ //echo $sql;
+$stmt = sqlsrv_prepare($conn, $sql, array(&$code,&$CodeClient,&$Observation, &$type,&$Module,&$nomuser,&$spinRep,&$checkgroup));
+
 if (!$stmt) {
     //   echo '!sql <br>';
   die(print_r(sqlsrv_errors(), true));
