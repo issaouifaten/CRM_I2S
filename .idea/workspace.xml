@@ -1,63 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b7b0f6e6-88a6-42d2-a36d-60686198a830" name="Default Changelist" comment="comit">
-      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/AddLigneRapportToTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/AddSingleTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/AnnulAppel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/SpinClient.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/SpinDegres.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/SpinModule.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/SpinRespensable.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/ajoutAppel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/tableTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/tableTacheRapport.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppelDemande/ListAppel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Calendrier/Controller/FicheClient.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Calendrier/Controller/listcalendar.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Calendrier/Controller/listdetail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Calendrier/listcalendar.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/ModifTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/SpinAppel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/SpinDegres.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/affectTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/alertStart.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/fill_tableTache_par_etat.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/finiTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/finiTacheForcer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/listGroupTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/modifListGroupAffect.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/pauseTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/planifierTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/startTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/tableChronoTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/tableChronoTacheParDeveloppeur.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/Controller/tableTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/chronoTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tache/impression/impression_listeTache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+    <list default="true" id="b7b0f6e6-88a6-42d2-a36d-60686198a830" name="Default Changelist" comment="comit2502">
+      <change afterPath="$PROJECT_DIR$/AppelDemande.rar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/chargerDocuments.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/spinDocument.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/Controller/spinRapportClient.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppelDemande/SaisieRapport.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tache/Controller/annulerTache.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/session.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calendrier/Controller/SpinRespensable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Calendrier/Controller/SpinRespensable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calendrier/affiche.php" beforeDir="false" afterPath="$PROJECT_DIR$/Calendrier/affiche.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppelDemande/Controller/AddLigneRapportToTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/AppelDemande/Controller/AddLigneRapportToTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppelDemande/Controller/tableTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/AppelDemande/Controller/tableTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppelDemande/ListAppel.php" beforeDir="false" afterPath="$PROJECT_DIR$/AppelDemande/ListAppel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu/menuLateral.php" beforeDir="false" afterPath="$PROJECT_DIR$/Menu/menuLateral.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Menu/menuTop.php" beforeDir="false" afterPath="$PROJECT_DIR$/Menu/menuTop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/SpinTypeActivite.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/Controller/SpinRespensable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/ajoutActivitie.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/ajoutRespensable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/ajoutSalle.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/modifActivite.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/modifRespensable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/modifSalle.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/tableActivite.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/tableRespensable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/controller/tableSalle.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/parametrageActivity.php" beforeDir="false" afterPath="$PROJECT_DIR$/AppelDemande/AjoutAppel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/parametrageRespensable.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/ListTache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModuleParametrage/parametrageSalle.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/chronoTacheParDeveloppeur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tache/AjoutTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/AjoutTache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tache/Controller/SpinAppel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/Controller/SpinAppel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tache/Controller/ajoutTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/Controller/ajoutTache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/calendrier.css" beforeDir="false" afterPath="$PROJECT_DIR$/design/calendrier.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tache/ListTache.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tache/ListTache.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,32 +34,35 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectId" id="1nmhAWtghEIRjSZRtfod77R8DbF" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../web_xampp/Color" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Tache/Controller" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\CRM_I2S\CompteurPiece" />
       <recent name="C:\xampp\htdocs\CRM_I2S\Tache\Controller" />
+      <recent name="C:\xampp\htdocs\CRM_I2S\AppelDemande\Controller" />
+      <recent name="C:\xampp\htdocs\CRM_I2S\AppelDemande" />
+      <recent name="C:\xampp\htdocs\CRM_I2S\CompteurPiece" />
       <recent name="C:\xampp\htdocs\CRM_I2S\Calendrier\Controller" />
-      <recent name="C:\xampp\htdocs\CRM_I2S\Tache" />
-      <recent name="C:\xampp\htdocs\CRM_I2S\Calendrier" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\CRM_I2S\Calendrier\Controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.i.php">
+  <component name="RunManager" selected="JavaScript Debug.index.php">
     <configuration name="alertStart.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CRM_I2S/Tache/Controller/alertStart.php" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -118,10 +83,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index.php" />
         <item itemvalue="JavaScript Debug.i.php" />
         <item itemvalue="PHP Script.incriment.php" />
         <item itemvalue="JavaScript Debug.alertStart.php" />
-        <item itemvalue="JavaScript Debug.index.php" />
         <item itemvalue="JavaScript Debug.listdetail.php" />
       </list>
     </recent_temporary>
@@ -292,7 +257,21 @@
       <workItem from="1614244064104" duration="1788000" />
       <workItem from="1614245871937" duration="1792000" />
       <workItem from="1614247705441" duration="1783000" />
-      <workItem from="1614249508614" duration="1334000" />
+      <workItem from="1614249508614" duration="1369000" />
+      <workItem from="1614265932559" duration="635000" />
+      <workItem from="1614338868318" duration="1784000" />
+      <workItem from="1614340675150" duration="1789000" />
+      <workItem from="1614342497788" duration="1409000" />
+      <workItem from="1614344308335" duration="1786000" />
+      <workItem from="1614346116033" duration="69000" />
+      <workItem from="1614346199233" duration="1786000" />
+      <workItem from="1614348007461" duration="1786000" />
+      <workItem from="1614349815133" duration="1784000" />
+      <workItem from="1614351624426" duration="1780000" />
+      <workItem from="1614353432783" duration="790000" />
+      <workItem from="1614414697057" duration="1788000" />
+      <workItem from="1614416523302" duration="1884000" />
+      <workItem from="1614418428773" duration="1798000" />
     </task>
     <task id="LOCAL-00001" summary="comit">
       <created>1612013004080</created>
@@ -301,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612013004080</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="comit2502">
+      <created>1614250868647</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1614250868647</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +306,9 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="comit" />
-    <option name="LAST_COMMIT_MESSAGE" value="comit" />
+    <MESSAGE value="comit2502" />
+    <option name="LAST_COMMIT_MESSAGE" value="comit2502" />
   </component>
 </project>

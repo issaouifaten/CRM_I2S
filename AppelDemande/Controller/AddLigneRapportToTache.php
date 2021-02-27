@@ -30,7 +30,7 @@ if($spinRep=="")
 {
     $etat="E96";
 }else{
-    $etat="E97";
+    $etat="E66";
 }
 
 $sql =  "insert into  TacheSuivieDeveloppeur(   NumeroTache
@@ -51,13 +51,13 @@ $sql =  "insert into  TacheSuivieDeveloppeur(   NumeroTache
 ,'$ModuleAjout'
 ,getdate(),'$nomuser','$spinRep',''
 ,(select CodeDegresImportance from AppelDemandeCRM where NumeroAppel='$coderapport')
-,'$etat','','$coderapport','$datedebut_ajout','$datedebut_ajout','$duree','$nomuser',getdate(),$dureeMinute
+,'$etat','','$coderapport',convert(date,'$datedebut_ajout'),convert(date,'$datedebut_ajout'),'$duree','$nomuser',getdate(),$dureeMinute
 
 )";
 
 $stmt = sqlsrv_prepare($conn, $sql, array(&$Observation));
 $test=1;
-echo $sql;
+
 if (!$stmt) {
       echo $Observation ;
     die(print_r(sqlsrv_errors(), true));

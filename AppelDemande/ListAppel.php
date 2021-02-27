@@ -904,13 +904,13 @@ require "../Connexion/db.php";
 
                     if (this.readyState == 4 && this.status == 200) {
 
-                        console.error("longueur" + longueur + "i=" + i);
+
 
                         if (this.responseText == 1) {
-
-                            if (i == longueur - 1) {
+                            console.error("longueur" + longueur + "i=" + i);
+                            if (i == (longueur - 1) ){
                                 console.error(" terminer " + this.responseText)
-                                //  location.reload();
+                                location.reload();
                             }
 
 

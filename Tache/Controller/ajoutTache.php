@@ -1,6 +1,7 @@
 <?php
 
 require "../../Connexion/db.php";
+require "../../session.php";
 require "../../CompteurPiece/CompteurPiece.php";
  //"Observation=" + txt_observation + "&CodeClient=" + spinClient + "&Module=" + spinModule +
 //                "&maintenance=" + rd_maintenance + "&Ajout=" + rd_ajout + "&Technique=" + rd_technique+"&Soft="+rd_soft;
@@ -9,8 +10,11 @@ $CodeClient=$_GET['CodeClient'];
 $Module=$_GET['Module'];
 
 $Observation=utf8_decode($_GET['Observation']);
-session_start();
-$nomuser=  $_SESSION['username'];
+
+
+
+
+
 $nature=$_GET['nature'];
 $type=$_GET['type'];
 $checkgroup=$_GET['checkgroup'];

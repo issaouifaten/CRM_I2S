@@ -94,6 +94,15 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="../AppelDemande/SaisieRapport.php" class="nav-link">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>
+                            Saisie Rapport GED (PV)
+
+                        </p>
+                    </a>
+                </li>
 
 
 

@@ -1,7 +1,7 @@
 <?php
 
 
-$sql =  " select  NumeroAppel,Description from AppelDemandeCRM";
+$sql =  " select  NumeroAppel,Description,DateCreation from AppelDemandeCRM";
 
 $stmt = sqlsrv_query($conn, $sql);
 if ($stmt === false) {
@@ -10,8 +10,8 @@ if ($stmt === false) {
 
 $spin="";
 while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-
-$spin.="<option value='".$row['NumeroAppel']."'  >".utf8_encode($row['Description'])."</option>";
+    $DateCreation = date_format($row['DateCreation'], 'd/m/Y');
+$spin.="<option value='".$row['NumeroAppel']."'  >".utf8_encode($row['Description'])." ($DateCreation)</option>";
 
 
 

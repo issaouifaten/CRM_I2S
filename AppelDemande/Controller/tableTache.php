@@ -85,7 +85,7 @@ if($Rapport==1)
 //$spin.="<tr    > ";
 
 
-    $spin .= "<td $style>$icon $Description</td> ";
+    $spin .= "<td $style>$icon $Description <SPAN class='font-weight-bold  ' style='color: maroon'>($DateCreation)</SPAN> </td> ";
     $spin .= "<td>$Nom</td> ";
      $spin .= "<td>$RaisonSociale</td> ";
     $spin .= "<td>$DateCreation</td> ";

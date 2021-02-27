@@ -142,14 +142,18 @@ require "../Connexion/db.php";
                                 <table id="table" class="table table-bordered table-striped table-responsive ">
                                     <thead id="header_tab">
                                     <tr>
-                                        <th> <input type="text" id="0" onkeyup="Search_filtre('0')" placeholder="Tache">  </th>
+                                        <th><input type="text" id="0" onkeyup="Search_filtre('0')" placeholder="Tache">
+                                        </th>
                                         <th>Affecté</th>
                                         <th>Date_debut</th>
                                         <th>Client</th>
 
-                                        <th> <input type="text"  style="width: 50px" id="4" onkeyup="Search_filtre('4')" placeholder="Type"> </th>
+                                        <th><input type="text" style="width: 50px" id="4" onkeyup="Search_filtre('4')"
+                                                   placeholder="Type"></th>
                                         <th>Module</th>
-                                        <th width="100px"><input style="width: 80px" type="text" id="6" onkeyup="Search_filtre('6')" placeholder="Utilisateur"> </th>
+                                        <th width="100px"><input style="width: 80px" type="text" id="6"
+                                                                 onkeyup="Search_filtre('6')" placeholder="Utilisateur">
+                                        </th>
                                         <th>Etat</th>
                                         <th hidden>Eclaircissement</th>
                                         <th hidden></th>
@@ -196,6 +200,11 @@ require "../Connexion/db.php";
                             <i class="fas fa-close"></i> Finir
                         </button>
 
+                        <button class="btn btn-app bg-danger" data-toggle="modal" data-target="#ModalAnnuler">
+
+                            <i class="fas fa-close"></i> Annuler
+                        </button>
+
                         <span id="spanAlert"> </span>
 
 
@@ -233,6 +242,11 @@ require "../Connexion/db.php";
             <button class="btn btn-sm bg-blue" data-toggle="modal" data-target="#ModalFinir">
 
                 <i class="fas fa-close"></i> Finir
+            </button>
+
+            <button class="btn btn-sm bg-danger" data-toggle="modal" data-target="#ModalAnnuler">
+
+                <i class="fas fa-close"></i> Annuler
             </button>
 
         </div>
@@ -288,6 +302,8 @@ require "../Connexion/db.php";
                             </select>
                         </div>
                     </div>
+
+
                     <div class="row p-2">
 
                         <div class="col-md-2">
@@ -298,6 +314,8 @@ require "../Connexion/db.php";
                         </div>
 
                     </div>
+
+
                     <div class="row p-2">
                         <div class="col-md-2">
                             <label>Nature</label>
@@ -526,6 +544,44 @@ require "../Connexion/db.php";
     </div>
 </div>
 
+
+<div class="modal fade" id="ModalAnnuler" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header alert-red">
+
+                <h4 class="modal-title"> Annuler <span id="tache"></span></h4>
+            </div>
+            <div class="modal-body">
+
+                <br>
+
+                <h6>Etes-Vous sur d'annuler cette tache ?</h6>
+
+                <div class="row p-2">
+
+                    <div class="col-md-4">
+                        <label id="txt_observation_annulation"></label>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+
+
+                <button class="btn btn-danger" onclick="annulerTache()">Confirmer Annulation</button>
+                <button class="btn btn-default" data-dismiss="modal">fermer</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 <div class="modal fade" id="ModalFinir" role="dialog">
     <div class="modal-dialog modal-lg">
 
@@ -733,6 +789,9 @@ require "../Connexion/db.php";
         document.getElementById("spinRep").value = CodeAffecte;
         document.getElementById("txt_reponse").value = Reponse;
         document.getElementById("spinDegres").value = Degres;
+
+        // annulation
+        document.getElementById('txt_observation_annulation').innerHTML = codeTache + ":" + Tache;
         if (datedebut != "") {
             onTimeChange();
         }
@@ -897,11 +956,11 @@ require "../Connexion/db.php";
         var duree = dureeHeure + "H" + dureeMinute + "Min"
         var parm = "date_debut=" + date_debut + "&date_fin=" + date_fin + "&spinDegres=" + spinDegres +
             "&txt_reponse=" + txt_reponse + "&spinRep=" + spinRep + "&CodeTache=" + CodeTache + "&duree=" +
-            duree+"&dureeHeure="+dureeHeure+"&dureeMinute="+dureeMinute;
+            duree + "&dureeHeure=" + dureeHeure + "&dureeMinute=" + dureeMinute;
 
 
         // alert(parm)
-        if ( spinRep == "") {
+        if (spinRep == "") {
             document.getElementById('txt_erreur').innerHTML = " Vérifier vos champs";
 
             $('#ModalErreur').modal('show');
@@ -1000,7 +1059,7 @@ require "../Connexion/db.php";
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
 
-console.error("affect",this.responseText)
+                    console.error("affect", this.responseText)
                     if (this.responseText == 1) {
 
 
@@ -1153,7 +1212,7 @@ console.error("affect",this.responseText)
             }
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.error("affectgroup",this.responseText)
+                    console.error("affectgroup", this.responseText)
 
                     if (this.responseText == 1) {
                         location.reload();
@@ -1264,13 +1323,48 @@ console.error("affect",this.responseText)
         }
 
 
-        xmlhttp.open("GET", "Controller/alertStart.php?CodeAffect="+spinRep_recherche, true);
+        xmlhttp.open("GET", "Controller/alertStart.php?CodeAffect=" + spinRep_recherche, true);
         xmlhttp.send();
-        console.error("Controller/alertStart.php?CodeAffect="+spinRep_recherche);
+        console.error("Controller/alertStart.php?CodeAffect=" + spinRep_recherche);
     }
 
 
+    function annulerTache() {
+        var CodeTache = document.getElementById('CodeTache').value;
 
+
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else { // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                console.error("affect", this.responseText)
+                if (this.responseText == 1) {
+
+                   location.reload() ;
+
+                } else {
+                    document.getElementById('txt_erreur').innerHTML = " Erreur SQL" + this.responseText;
+
+                    $('#ModalErreur').modal('show');
+
+                }
+
+
+            }
+        }
+
+        var parm = "CodeTache=" + CodeTache;
+
+        xmlhttp.open("GET", "Controller/annulertache.php?" + parm, true);
+        xmlhttp.send();
+
+
+    }
 
 
 </script>
